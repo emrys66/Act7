@@ -2,7 +2,6 @@
 - hosts: all
   become: true
   pre_tasks:
-    
   - name: install updates (Ubuntu)
     tags: always
     apt:
@@ -13,7 +12,6 @@
 - hosts: servers, db_server
   become: true
   tasks:
-  
   - name: install apache and php for Ubuntu servers
     tags: apache,apache2,ubuntu
     apt:
@@ -22,7 +20,7 @@
         - libapache2-mod-php
       state: latest
     when: ansible_distribution is defined and ansible_distribution == "Ubuntu"
-    
+
   - name: install apache and php for CentOS servers
     tags: apache,centos,httpd
     dnf:
@@ -40,4 +38,3 @@
       owner: root
       group: root
       mode: 0644
-
