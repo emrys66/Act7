@@ -30,7 +30,7 @@
       update_cache: yes
     when: ansible_distribution is defined and ansible_distribution == "Ubuntu"
 
-- hosts: all
+- hosts: web_servers
   become: true
   tasks:
   
@@ -89,3 +89,4 @@
       package:
         name: samba
         state: latest
+
