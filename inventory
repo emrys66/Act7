@@ -2,7 +2,7 @@
 server1 ansible_host=192.168.56.135 
 server3 ansible_host=192.168.56.139
 
-[serer_centOS]
+[db_server]
 centos ansible_host=192.168.56.137 ansible_user=centos
 
 [fileservers]
