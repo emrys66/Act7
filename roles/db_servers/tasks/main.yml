@@ -1,38 +1,5 @@
 ---
-- hosts: all
-  become: true
-  pre_tasks:
 
-  - name: install updates (CentOS)
-    tags: always
-    dnf:
-      update_only: yes
-      update_cache: yes
-    when: ansible_distribution is defined and ansible_distribution == "CentOS"
-    
-  - name: install updates (Ubuntu)
-    tags: always
-    apt:
-      upgrade: dist
-      update_cache: yes
-    when: ansible_distribution is defined and ansible_distribution == "Ubuntu"
-
-- hosts: fileservers
-  become: true
-  tasks:
-
-  - name: install unzip
-    package:
-      name: unzip
-
-  - name: install terraform
-    unarchive: 
-      src: https://releases.hashicorp.com/terraform/0.12.28/terraform_0.12.28_linux_amd64.zip
-      dest: /usr/local/bin
-      remote_src: yes
-      mode: 0755
-      owner: root
-      group: root
 
 - hosts: servers, db_server
   become: true
@@ -88,13 +55,3 @@
   #    name: mariadb-server
   #    state: latest
   #  when: ansible_distribution is defined and ansible_distribution == "Ubuntu"
-
-- hosts: fileservers
-  become: true
-  tasks:
-  
-    - name: install samba package
-      tags: samba
-      package:
-        name: samba
-        state: latest
