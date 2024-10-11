@@ -1,3 +1,4 @@
+---
 - hosts: all
   become: true
   pre_tasks:
@@ -6,14 +7,14 @@
       dnf:
         update_cache: yes
       changed_when: false
-      when: ansible_distribution == "CentOS"
+      when: ansible_distribution is defined and ansible_distribution == "CentOS"
 
     - name: install updates (Ubuntu)
       tags: always
       apt:
         update_cache: yes
       changed_when: false
-      when: ansible_distribution == "Ubuntu"
+      when: ansible_distribution is defined and ansible_distribution == "Ubuntu"
 
 - hosts: servers
   become: true
@@ -23,9 +24,9 @@
 - hosts: server_centOS
   become: true
   roles:
-    - server_centOS
+    - db_server
 
-- hosts: file_server
+- hosts: fileservers
   become: true
   roles:
-    - file_server
+    - fileservers
