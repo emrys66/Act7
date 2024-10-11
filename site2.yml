@@ -1,7 +1,7 @@
 ---
 - hosts: all
   become: true
-  pre_tasks:
+  tasks:
     - name: update repository index (CentOS)
       tags: always
       dnf:
@@ -21,7 +21,7 @@
   roles:
     - servers
 
-- hosts: server_centOS
+- hosts: db_server
   become: true
   roles:
     - db_server
